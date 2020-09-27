@@ -76,7 +76,7 @@ namespace EmployeeManagement.Api.Controllers
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error creating new employee record");
+                    $"Error creating new employee record :: {ex}");
             }
         }
 

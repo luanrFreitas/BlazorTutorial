@@ -1,0 +1,42 @@
+﻿@page "/DataBindingDemo"
+@inherits DataBindingDemoBase
+
+<h3>DataBindingDemo</h3>
+<br />
+
+<b>Name :</b> @Name
+<br />
+
+<b>Name with salutation:</b> @(Gender == "Male" ? $"Mr. {Name}" : $"Miss. {Name}")
+<br />
+
+<b>Name :</b>
+<input value="@Name" />
+<br />
+
+<b>Name :</b>
+<input value="@Name" @onchange="@(e => { Name = e.Value.ToString(); })" />
+<br />
+
+<b>Name :</b>
+<input @bind="Name" />
+<br />
+
+<b>Name :</b>
+<input @bind="Name" @bind:event="oninput" />
+<br />
+
+<b>Colour :</b>
+<input @bind="Colour" />
+
+<div @bind-style="Colour" @bind-style:event="onchange">
+    <h3>The background colour of this text changes</h3>
+</div>
+<br />
+
+<div>
+    <textarea @bind="Description" @bind:event="oninput" />
+</div>
+<div>
+    Count : @Description.Length
+</div>
