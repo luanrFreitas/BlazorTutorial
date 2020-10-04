@@ -11,6 +11,8 @@ namespace EmployeeManagement.Web.Pages
 {
     public class EmployeeListBase : ComponentBase
     {
+        protected int SelectedEmployeesCount { get; set; } = 0;
+
         [Inject]
         public IEmployeeService EmployeeService { get; set; }
         public bool ShowFooter { get; set; } = true;
@@ -20,6 +22,17 @@ namespace EmployeeManagement.Web.Pages
         {
             Employees = (await EmployeeService.GetEmployees()).ToList();
             // await Task.Run(LoadEmployees);
+        }
+        protected void EmployeeSelectionChanged(bool isSelected)
+        {
+            if (isSelected)
+            {
+                SelectedEmployeesCount++;
+            }
+            else
+            {
+                SelectedEmployeesCount--;
+            }
         }
 
         private void LoadEmployees()
